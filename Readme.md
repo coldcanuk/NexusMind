@@ -36,7 +36,4 @@ The project structure can be visualized using the Mermaid diagram generated in `
 Contributions to NexusMind are welcome. Please feel free to fork the repository, make changes, and submit pull requests for enhancements or bug fixes.
 
 ## License
-[Specify your license here, if applicable]
-
-## Contact
-[Provide contact information or links to project repository for further information or support]
+MIT
