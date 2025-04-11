@@ -1,0 +1,114 @@
+graph TD
+    Project["NexusMind Codebase Analysis and Visualization Tool"]
+    ___gitignore["./.gitignore"]
+    Project --> ___gitignore
+    __codebase_txt["./codebase.txt"]
+    Project --> __codebase_txt
+    __codebase_structure_mmd["./codebase_structure.mmd"]
+    Project --> __codebase_structure_mmd
+    __makeMermaid_py["./makeMermaid.py"]
+    Project --> __makeMermaid_py
+    __makeMermaid_py_generate_mermaid_diagram["generate_mermaid_diagram"]
+    __makeMermaid_py --> __makeMermaid_py_generate_mermaid_diagram
+    __makeMermaid_py_load_table_of_contents["load_table_of_contents"]
+    __makeMermaid_py --> __makeMermaid_py_load_table_of_contents
+    __makeMermaid_py_load_table_of_contents -.-> json["json"]
+    __makeMermaid_py_main["main"]
+    __makeMermaid_py --> __makeMermaid_py_main
+    __makeMermaid_py_main -.-> load_table_of_contents["load_table_of_contents"]
+    __makeMermaid_py_main -.-> generate_mermaid_diagram["generate_mermaid_diagram"]
+    __makeMermaid_py_main -.-> save_mermaid_file["save_mermaid_file"]
+    __makeMermaid_py_main -.-> os["os"]
+    __makeMermaid_py_save_mermaid_file["save_mermaid_file"]
+    __makeMermaid_py --> __makeMermaid_py_save_mermaid_file
+    __makeTOC_py["./makeTOC.py"]
+    Project --> __makeTOC_py
+    __makeTOC_py_dump_codebase_to_file["dump_codebase_to_file"]
+    __makeTOC_py --> __makeTOC_py_dump_codebase_to_file
+    __makeTOC_py_generate_table_of_contents["generate_table_of_contents"]
+    __makeTOC_py --> __makeTOC_py_generate_table_of_contents
+    __makeTOC_py_generate_table_of_contents -.-> requests["requests"]
+    __makeTOC_py_generate_table_of_contents -.-> os["os"]
+    __makeTOC_py_generate_table_of_contents -.-> config_json["config.json"]
+    __makeTOC_py_log_to_redis["log_to_redis"]
+    __makeTOC_py --> __makeTOC_py_log_to_redis
+    __makeTOC_py_log_to_redis -.-> redis["redis"]
+    __makeTOC_py_log_to_redis -.-> time["time"]
+    __makeTOC_py_main["main"]
+    __makeTOC_py --> __makeTOC_py_main
+    __makeTOC_py_main -.-> read_codebase["read_codebase"]
+    __makeTOC_py_main -.-> dump_codebase_to_file["dump_codebase_to_file"]
+    __makeTOC_py_main -.-> generate_table_of_contents["generate_table_of_contents"]
+    __makeTOC_py_main -.-> save_table_of_contents["save_table_of_contents"]
+    __makeTOC_py_read_codebase["read_codebase"]
+    __makeTOC_py --> __makeTOC_py_read_codebase
+    __makeTOC_py_read_codebase -.-> os["os"]
+    __makeTOC_py_save_table_of_contents["save_table_of_contents"]
+    __makeTOC_py --> __makeTOC_py_save_table_of_contents
+    __makeTOC_py_save_table_of_contents -.-> os["os"]
+    __makeTOC_py_save_table_of_contents -.-> shutil["shutil"]
+    __table_of_contents_json["./table_of_contents.json"]
+    Project --> __table_of_contents_json
+    __toc_backup_json["./toc_backup.json"]
+    Project --> __toc_backup_json
+    __llm_proxy__env_example["./llm_proxy/.env.example"]
+    Project --> __llm_proxy__env_example
+    __llm_proxy_Dockerfile["./llm_proxy/Dockerfile"]
+    Project --> __llm_proxy_Dockerfile
+    __llm_proxy_config_json["./llm_proxy/config.json"]
+    Project --> __llm_proxy_config_json
+    __llm_proxy_docker_compose_yml["./llm_proxy/docker-compose.yml"]
+    Project --> __llm_proxy_docker_compose_yml
+    __llm_proxy_proxy_py["./llm_proxy/proxy.py"]
+    Project --> __llm_proxy_proxy_py
+    __llm_proxy_proxy_py_handle_query["handle_query"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_handle_query
+    __llm_proxy_proxy_py_handle_query -.-> Flask["Flask"]
+    __llm_proxy_proxy_py_handle_query -.-> proxy_streaming["proxy_streaming"]
+    __llm_proxy_proxy_py_handle_query -.-> proxy_non_streaming["proxy_non_streaming"]
+    __llm_proxy_proxy_py_log_to_redis["log_to_redis"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_log_to_redis
+    __llm_proxy_proxy_py_log_to_redis -.-> redis["redis"]
+    __llm_proxy_proxy_py_log_to_redis -.-> time["time"]
+    __llm_proxy_proxy_py_proxy_non_streaming["proxy_non_streaming"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_proxy_non_streaming
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> requests["requests"]
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> os["os"]
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> logging["logging"]
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> config_json["config.json"]
+    __llm_proxy_proxy_py_proxy_streaming["proxy_streaming"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_proxy_streaming
+    __llm_proxy_proxy_py_proxy_streaming -.-> requests["requests"]
+    __llm_proxy_proxy_py_proxy_streaming -.-> os["os"]
+    __llm_proxy_proxy_py_proxy_streaming -.-> logging["logging"]
+    __llm_proxy_proxy_py_proxy_streaming -.-> config_json["config.json"]
+    __llm_proxy_requirements_txt["./llm_proxy/requirements.txt"]
+    Project --> __llm_proxy_requirements_txt
+    __llm_redis__env_example["./llm_redis/.env.example"]
+    Project --> __llm_redis__env_example
+    __llm_redis_docker_compose_yml["./llm_redis/docker-compose.yml"]
+    Project --> __llm_redis_docker_compose_yml
+    Flask["Flask"]
+    Project -.-> Flask
+    requests["requests"]
+    Project -.-> requests
+    redis["redis"]
+    Project -.-> redis
+    logging["logging"]
+    Project -.-> logging
+    json["json"]
+    Project -.-> json
+    os["os"]
+    Project -.-> os
+    shutil["shutil"]
+    Project -.-> shutil
+    time["time"]
+    Project -.-> time
+    AI_API_KEY_from__env["AI_API_KEY from .env"]
+    Project -.-> AI_API_KEY_from__env
+    llm_network_for_inter_service_communication["llm_network for inter-service communication"]
+    Project -.-> llm_network_for_inter_service_communication
+    xAI_API["xAI API"]
+    Project -.-> xAI_API
+    Docker_for_containerization["Docker for containerization"]
+    Project -.-> Docker_for_containerization

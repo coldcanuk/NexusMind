@@ -1,0 +1,14 @@
+services:
+  llm_proxy:
+    build: .
+    container_name: llm_proxy
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    networks:
+      - llm_network
+
+networks:
+  llm_network:
+    external: true

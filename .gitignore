@@ -1,0 +1,45 @@
+# Ignore all .env files
+*.env
+
+# Ignore all .venv directories
+*.venv
+
+# Ignore toc_backup.json
+toc_backup.json
+
+# Ignore .env files in subdirectories
+llm_proxy/.env
+llm_redis/.env
+
+# Python ignores
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+env.bak/
+venv.bak/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Docker ignores
+.dockerignore
+Dockerfile*
+docker-compose.override.yml
+.docker/

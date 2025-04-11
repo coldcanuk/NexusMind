@@ -1,0 +1,4 @@
+{
+    "url": "https://api.x.ai/v1/chat/completions",
+    "content_type": "application/json"
+}
