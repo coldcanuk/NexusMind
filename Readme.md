@@ -19,20 +19,10 @@ NexusMind is a comprehensive toolset designed to help developers understand and 
 - **`codebase_structure.mmd`**: The Mermaid diagram file representing the visual structure of the codebase.
 
 ## Getting Started
-1. **Setup Environment**: Ensure you have Python installed along with necessary dependencies. Use the `requirements.txt` in `llm_proxy/` for the proxy service.
-2. **Configuration**: Configure API keys and endpoints in `llm_proxy/config.json` and `.env` files. Example files are provided.
+1. **Configuration**: Configure API keys and endpoints in `llm_proxy/config.json` and `.env` files. Example files are provided.
+2. **Deploy**: `cd llm_proxy`; `docker-compose up -d` && `cd llm_redis`; `docker-compose up -d`
 3. **Run Analysis**: Execute `makeTOC.py` to read your codebase and generate the table of contents.
-   ```bash
-   python makeTOC.py
-   ```
-4. **Generate Visualization**: Run `makeMermaid.py` to create a Mermaid diagram from the table of contents.
-   ```bash
-   python makeMermaid.py
-   ```
-5. **Deploy Proxy Service**: Use Docker Compose in `llm_proxy/` to deploy the proxy service for AI API interactions.
-   ```bash
-   cd llm_proxy && docker-compose up
-   ```
+
 
 ## Dependencies
 - Python libraries: `requests`, `redis`, `Flask`, and others as listed in `llm_proxy/requirements.txt`.
