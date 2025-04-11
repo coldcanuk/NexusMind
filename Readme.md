@@ -1,7 +1,7 @@
 # NexusMind Codebase Analysis and Visualization Tool
 
 ## Overview
-NexusMind is a comprehensive toolset designed to help developers understand and visualize their codebase structure. It automates the process of reading a codebase, generating a detailed table of contents using AI, and creating visual diagrams with Mermaid to represent the codebase structure. Additionally, it includes a proxy service for interacting with AI APIs and logging interactions via Redis.
+NexusMind is a project centered around two Docker containers, `llm_proxy` and `llm_redis`. These containers are designed to act as your personal proxy to your favorite LLM, logging all inbound and outbound tokens to Redis for future use. At this time, only non-streaming interactions are supported, with plans to add a streaming option in the future. Additionally, NexusMind includes a table of contents generator that creates a JSON file, which is then used to produce a Mermaid file for visualizing the codebase structure.
 
 ## Features
 - **Codebase Analysis**: Reads through the entire codebase, ignoring specified directories and files (like `.venv` and `.env`), to compile content for analysis.
