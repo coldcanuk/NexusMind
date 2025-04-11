@@ -32,6 +32,8 @@ def read_codebase():
         # Skip .venv directory
         if '.venv' in dirs:
             dirs.remove('.venv')
+        if '.git' in dirs:
+            dirs.remove('.git')
         for file in files:
             # Ignore .env files
             if file.endswith('.env'):

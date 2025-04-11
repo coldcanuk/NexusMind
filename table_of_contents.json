@@ -11,6 +11,15 @@
         "none": "No classes defined in this file."
       }
     },
+    "./Readme.md": {
+      "description": "Project documentation providing an overview, features, structure, and setup instructions for NexusMind.",
+      "functions": {
+        "none": "No functions defined in this file."
+      },
+      "classes": {
+        "none": "No classes defined in this file."
+      }
+    },
     "./codebase.txt": {
       "description": "Temporary text file containing a dump of the codebase content for reference during table of contents generation.",
       "functions": {
@@ -22,90 +31,6 @@
     },
     "./codebase_structure.mmd": {
       "description": "Mermaid diagram file representing the visual structure of the codebase.",
-      "functions": {
-        "none": "No functions defined in this file."
-      },
-      "classes": {
-        "none": "No classes defined in this file."
-      }
-    },
-    "./makeMermaid.py": {
-      "description": "Script to generate a Mermaid diagram from a table of contents JSON file.",
-      "functions": {
-        "generate_mermaid_diagram": {
-          "purpose": "Generates a Mermaid diagram string representing the codebase structure.",
-          "dependencies": [],
-          "location": "Lines 11-46"
-        },
-        "load_table_of_contents": {
-          "purpose": "Loads the table of contents data from a JSON file.",
-          "dependencies": ["json"],
-          "location": "Lines 5-9"
-        },
-        "main": {
-          "purpose": "Main function to load the table of contents and generate/save the Mermaid diagram.",
-          "dependencies": ["load_table_of_contents", "generate_mermaid_diagram", "save_mermaid_file", "os"],
-          "location": "Lines 54-64"
-        },
-        "save_mermaid_file": {
-          "purpose": "Saves the generated Mermaid diagram content to a file.",
-          "dependencies": [],
-          "location": "Lines 48-52"
-        }
-      },
-      "classes": {
-        "none": "No classes defined in this file."
-      }
-    },
-    "./makeTOC.py": {
-      "description": "Script to read a codebase, generate a table of contents using an AI API, and save the result.",
-      "functions": {
-        "dump_codebase_to_file": {
-          "purpose": "Dumps the codebase content to a text file for reference.",
-          "dependencies": [],
-          "location": "Lines 44-48"
-        },
-        "generate_table_of_contents": {
-          "purpose": "Sends a request to an LLM API to generate a table of contents based on codebase content.",
-          "dependencies": ["requests", "os", "config.json"],
-          "location": "Lines 50-78"
-        },
-        "log_to_redis": {
-          "purpose": "Logs request and response data to Redis for tracking.",
-          "dependencies": ["redis", "time"],
-          "location": "Lines 19-25"
-        },
-        "main": {
-          "purpose": "Main function to orchestrate the reading, generation, and saving of the table of contents.",
-          "dependencies": ["read_codebase", "dump_codebase_to_file", "generate_table_of_contents", "save_table_of_contents"],
-          "location": "Lines 88-100"
-        },
-        "read_codebase": {
-          "purpose": "Reads the entire codebase, ignoring .env files and .venv directory.",
-          "dependencies": ["os"],
-          "location": "Lines 27-42"
-        },
-        "save_table_of_contents": {
-          "purpose": "Saves the generated table of contents to a JSON file with a backup option.",
-          "dependencies": ["os", "shutil"],
-          "location": "Lines 80-86"
-        }
-      },
-      "classes": {
-        "none": "No classes defined in this file."
-      }
-    },
-    "./table_of_contents.json": {
-      "description": "JSON file containing the generated table of contents for the codebase.",
-      "functions": {
-        "none": "No functions defined in this file."
-      },
-      "classes": {
-        "none": "No classes defined in this file."
-      }
-    },
-    "./toc_backup.json": {
-      "description": "Backup JSON file of a previous table of contents for the codebase.",
       "functions": {
         "none": "No functions defined in this file."
       },
@@ -197,6 +122,90 @@
     },
     "./llm_redis/docker-compose.yml": {
       "description": "Docker Compose configuration for the Redis service.",
+      "functions": {
+        "none": "No functions defined in this file."
+      },
+      "classes": {
+        "none": "No classes defined in this file."
+      }
+    },
+    "./makeMermaid.py": {
+      "description": "Script to generate a Mermaid diagram from a table of contents JSON file.",
+      "functions": {
+        "generate_mermaid_diagram": {
+          "purpose": "Generates a Mermaid diagram string representing the codebase structure.",
+          "dependencies": [],
+          "location": "Lines 11-46"
+        },
+        "load_table_of_contents": {
+          "purpose": "Loads the table of contents data from a JSON file.",
+          "dependencies": ["json"],
+          "location": "Lines 5-9"
+        },
+        "main": {
+          "purpose": "Main function to load the table of contents and generate/save the Mermaid diagram.",
+          "dependencies": ["load_table_of_contents", "generate_mermaid_diagram", "save_mermaid_file", "os"],
+          "location": "Lines 54-64"
+        },
+        "save_mermaid_file": {
+          "purpose": "Saves the generated Mermaid diagram content to a file.",
+          "dependencies": [],
+          "location": "Lines 48-52"
+        }
+      },
+      "classes": {
+        "none": "No classes defined in this file."
+      }
+    },
+    "./makeTOC.py": {
+      "description": "Script to read a codebase, generate a table of contents using an AI API, and save the result.",
+      "functions": {
+        "dump_codebase_to_file": {
+          "purpose": "Dumps the codebase content to a text file for reference.",
+          "dependencies": [],
+          "location": "Lines 44-48"
+        },
+        "generate_table_of_contents": {
+          "purpose": "Sends a request to an LLM API to generate a table of contents based on codebase content.",
+          "dependencies": ["requests", "os", "config.json"],
+          "location": "Lines 50-78"
+        },
+        "log_to_redis": {
+          "purpose": "Logs request and response data to Redis for tracking.",
+          "dependencies": ["redis", "time"],
+          "location": "Lines 19-25"
+        },
+        "main": {
+          "purpose": "Main function to orchestrate the reading, generation, and saving of the table of contents.",
+          "dependencies": ["read_codebase", "dump_codebase_to_file", "generate_table_of_contents", "save_table_of_contents"],
+          "location": "Lines 88-100"
+        },
+        "read_codebase": {
+          "purpose": "Reads the entire codebase, ignoring .env files and .venv directory.",
+          "dependencies": ["os"],
+          "location": "Lines 27-42"
+        },
+        "save_table_of_contents": {
+          "purpose": "Saves the generated table of contents to a JSON file with a backup option.",
+          "dependencies": ["os", "shutil"],
+          "location": "Lines 80-86"
+        }
+      },
+      "classes": {
+        "none": "No classes defined in this file."
+      }
+    },
+    "./table_of_contents.json": {
+      "description": "JSON file containing the generated table of contents for the codebase.",
+      "functions": {
+        "none": "No functions defined in this file."
+      },
+      "classes": {
+        "none": "No classes defined in this file."
+      }
+    },
+    "./toc_backup.json": {
+      "description": "Backup JSON file of a previous table of contents for the codebase.",
       "functions": {
         "none": "No functions defined in this file."
       },

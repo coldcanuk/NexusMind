@@ -2,10 +2,49 @@ graph TD
     Project["NexusMind Codebase Analysis and Visualization Tool"]
     ___gitignore["./.gitignore"]
     Project --> ___gitignore
+    __Readme_md["./Readme.md"]
+    Project --> __Readme_md
     __codebase_txt["./codebase.txt"]
     Project --> __codebase_txt
     __codebase_structure_mmd["./codebase_structure.mmd"]
     Project --> __codebase_structure_mmd
+    __llm_proxy__env_example["./llm_proxy/.env.example"]
+    Project --> __llm_proxy__env_example
+    __llm_proxy_Dockerfile["./llm_proxy/Dockerfile"]
+    Project --> __llm_proxy_Dockerfile
+    __llm_proxy_config_json["./llm_proxy/config.json"]
+    Project --> __llm_proxy_config_json
+    __llm_proxy_docker_compose_yml["./llm_proxy/docker-compose.yml"]
+    Project --> __llm_proxy_docker_compose_yml
+    __llm_proxy_proxy_py["./llm_proxy/proxy.py"]
+    Project --> __llm_proxy_proxy_py
+    __llm_proxy_proxy_py_handle_query["handle_query"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_handle_query
+    __llm_proxy_proxy_py_handle_query -.-> Flask["Flask"]
+    __llm_proxy_proxy_py_handle_query -.-> proxy_streaming["proxy_streaming"]
+    __llm_proxy_proxy_py_handle_query -.-> proxy_non_streaming["proxy_non_streaming"]
+    __llm_proxy_proxy_py_log_to_redis["log_to_redis"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_log_to_redis
+    __llm_proxy_proxy_py_log_to_redis -.-> redis["redis"]
+    __llm_proxy_proxy_py_log_to_redis -.-> time["time"]
+    __llm_proxy_proxy_py_proxy_non_streaming["proxy_non_streaming"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_proxy_non_streaming
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> requests["requests"]
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> os["os"]
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> logging["logging"]
+    __llm_proxy_proxy_py_proxy_non_streaming -.-> config_json["config.json"]
+    __llm_proxy_proxy_py_proxy_streaming["proxy_streaming"]
+    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_proxy_streaming
+    __llm_proxy_proxy_py_proxy_streaming -.-> requests["requests"]
+    __llm_proxy_proxy_py_proxy_streaming -.-> os["os"]
+    __llm_proxy_proxy_py_proxy_streaming -.-> logging["logging"]
+    __llm_proxy_proxy_py_proxy_streaming -.-> config_json["config.json"]
+    __llm_proxy_requirements_txt["./llm_proxy/requirements.txt"]
+    Project --> __llm_proxy_requirements_txt
+    __llm_redis__env_example["./llm_redis/.env.example"]
+    Project --> __llm_redis__env_example
+    __llm_redis_docker_compose_yml["./llm_redis/docker-compose.yml"]
+    Project --> __llm_redis_docker_compose_yml
     __makeMermaid_py["./makeMermaid.py"]
     Project --> __makeMermaid_py
     __makeMermaid_py_generate_mermaid_diagram["generate_mermaid_diagram"]
@@ -51,43 +90,6 @@ graph TD
     Project --> __table_of_contents_json
     __toc_backup_json["./toc_backup.json"]
     Project --> __toc_backup_json
-    __llm_proxy__env_example["./llm_proxy/.env.example"]
-    Project --> __llm_proxy__env_example
-    __llm_proxy_Dockerfile["./llm_proxy/Dockerfile"]
-    Project --> __llm_proxy_Dockerfile
-    __llm_proxy_config_json["./llm_proxy/config.json"]
-    Project --> __llm_proxy_config_json
-    __llm_proxy_docker_compose_yml["./llm_proxy/docker-compose.yml"]
-    Project --> __llm_proxy_docker_compose_yml
-    __llm_proxy_proxy_py["./llm_proxy/proxy.py"]
-    Project --> __llm_proxy_proxy_py
-    __llm_proxy_proxy_py_handle_query["handle_query"]
-    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_handle_query
-    __llm_proxy_proxy_py_handle_query -.-> Flask["Flask"]
-    __llm_proxy_proxy_py_handle_query -.-> proxy_streaming["proxy_streaming"]
-    __llm_proxy_proxy_py_handle_query -.-> proxy_non_streaming["proxy_non_streaming"]
-    __llm_proxy_proxy_py_log_to_redis["log_to_redis"]
-    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_log_to_redis
-    __llm_proxy_proxy_py_log_to_redis -.-> redis["redis"]
-    __llm_proxy_proxy_py_log_to_redis -.-> time["time"]
-    __llm_proxy_proxy_py_proxy_non_streaming["proxy_non_streaming"]
-    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_proxy_non_streaming
-    __llm_proxy_proxy_py_proxy_non_streaming -.-> requests["requests"]
-    __llm_proxy_proxy_py_proxy_non_streaming -.-> os["os"]
-    __llm_proxy_proxy_py_proxy_non_streaming -.-> logging["logging"]
-    __llm_proxy_proxy_py_proxy_non_streaming -.-> config_json["config.json"]
-    __llm_proxy_proxy_py_proxy_streaming["proxy_streaming"]
-    __llm_proxy_proxy_py --> __llm_proxy_proxy_py_proxy_streaming
-    __llm_proxy_proxy_py_proxy_streaming -.-> requests["requests"]
-    __llm_proxy_proxy_py_proxy_streaming -.-> os["os"]
-    __llm_proxy_proxy_py_proxy_streaming -.-> logging["logging"]
-    __llm_proxy_proxy_py_proxy_streaming -.-> config_json["config.json"]
-    __llm_proxy_requirements_txt["./llm_proxy/requirements.txt"]
-    Project --> __llm_proxy_requirements_txt
-    __llm_redis__env_example["./llm_redis/.env.example"]
-    Project --> __llm_redis__env_example
-    __llm_redis_docker_compose_yml["./llm_redis/docker-compose.yml"]
-    Project --> __llm_redis_docker_compose_yml
     Flask["Flask"]
     Project -.-> Flask
     requests["requests"]
