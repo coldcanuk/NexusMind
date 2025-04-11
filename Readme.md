@@ -37,3 +37,6 @@ Contributions to NexusMind are welcome. Please feel free to fork the repository,
 
 ## License
 MIT
+
+## Contact
+Eventually....
