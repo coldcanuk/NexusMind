@@ -6,6 +6,7 @@ import json
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from flask import Flask, request, Response, jsonify
+import uuid
 
 # Load configuration from config.json
 with open('config.json', 'r') as config_file:
@@ -25,13 +26,13 @@ logger = logging.getLogger()
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
-def log_to_redis(request_data, response_text):
-    """Log request and response data to Redis."""
+def log_to_redis(request_data, response_text, request_id):
+    """Log request and response data to Redis with a unique request ID."""
     query = request_data["messages"][-1]["content"]
     timestamp = int(time.time())
-    redis_client.lpush("outbound_tokens", f"{timestamp}: {query}")
+    redis_client.lpush("outbound_tokens", f"{timestamp}: {request_id}: {query}")
     if response_text:
-        redis_client.lpush("inbound_tokens", f"{timestamp}: {response_text}")
+        redis_client.lpush("inbound_tokens", f"{timestamp}: {request_id}: {response_text}")
 
 def proxy_non_streaming(request_data):
     """Handle non-streaming requests to the xAI API."""
@@ -40,6 +41,8 @@ def proxy_non_streaming(request_data):
         "Authorization": f"Bearer {os.environ['AI_API_KEY']}",
         "Content-Type": config['content_type']
     }
+    # Generate a random UUID for the request
+    request_id = str(uuid.uuid4())
     # Ensure required parameters are present
     if "temperature" not in request_data:
         request_data["temperature"] = 0  # Default value
@@ -51,7 +54,7 @@ def proxy_non_streaming(request_data):
     if response.status_code != 200:
         error_msg = f"Error: {response.status_code} - {response.text}"
         logger.error(error_msg)  # Log errors to file
-        log_to_redis(request_data, None)
+        log_to_redis(request_data, None, request_id)
         return {"error": error_msg}, response.status_code
     response_data = response.json()
     logger.info("Received non-streaming response: %s", response_data)
@@ -59,7 +62,7 @@ def proxy_non_streaming(request_data):
         response_text = response_data["choices"][0]["message"]["content"]
     except (KeyError, IndexError):
         response_text = "No response content"
-    log_to_redis(request_data, response_text)
+    log_to_redis(request_data, response_text, request_id)
     return response_data
 
 def proxy_streaming(request_data):
@@ -69,6 +72,8 @@ def proxy_streaming(request_data):
         "Authorization": f"Bearer {os.environ['AI_API_KEY']}",
         "Content-Type": config['content_type']
     }
+    # Generate a random UUID for the request
+    request_id = str(uuid.uuid4())
     # Ensure required parameters are present
     if "temperature" not in request_data:
         request_data["temperature"] = 0  # Default value
@@ -80,9 +85,9 @@ def proxy_streaming(request_data):
     if response.status_code != 200:
         error_msg = f"Error: {response.status_code} - {response.text}"
         logger.error(error_msg)  # Log errors to file
-        log_to_redis(request_data, None)
+        log_to_redis(request_data, None, request_id)
         return {"error": error_msg}, response.status_code
-    log_to_redis(request_data, None)
+    log_to_redis(request_data, None, request_id)
     for chunk in response.iter_lines():
         if chunk:
             logger.debug("Received chunk: %s", chunk)  # Log chunks for debugging
